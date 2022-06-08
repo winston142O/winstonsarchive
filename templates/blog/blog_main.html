@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Winston's Archive</title>
+        <!-- Favicon-->
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'blog/styles.css'%}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">WINSTON'S ARCHIVE</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://localhost:8000/user/winston1420">About</a></li>
+                        {% if user.is_staff %}
+                            <a class="nav-item nav-link" href="{% url 'post-create' %}">New post</a>
+                            <li class="nav-item"><a class="nav-link" href="/accounts/profile/">Profile</a></li>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                            <!--<li class="nav-item"><a class="nav-link" href="#!">Menú</a></li>-->
+                            <li class="nav-item"><a class="nav-link" href="/logout/">Logout</a></li>                        
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="/login/">Login</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>    
+        <section class="py-5">
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <center><h2>Essays, thoughts and opinions</h2></center>
+                        <Center><p class="text-muted">Here I upload essays I write in my free time, also scripts, thoughts and ideas I've had. In other words: My own personal archive, the only difference is that people can see them and comment about them if they want.</p></center>                        
+                    </div>
+                </div>
+            </div>        
+            {% for post in posts%}
+                        <article class="media post-content-section">
+                        <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+                        <div class="media-body">
+                            <div class="article-metadata">
+                            <a class="mr-2" href="{% url 'user-profile' post.author.username %}">{{ post.author }}</a>
+                            <small class="text-muted">{{ post.date_posted|date:"j / m / Y" }}</small>
+                            </div>
+                            <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+                            <!-- <p class="article-content">{{ post.contenido }}</p> -->
+                        </div>
+                        </article>
+                    {% endfor %}
+                    <br>
+                    {% if is_paginated %}
+                        <center>{% if page_obj.has_previous %}
+                            <a class="btn btn-outlife-info mb-4" href="?page=1">First Page</a>
+                            <a class="btn btn-outlife-info mb-4" href="?page={{ page_obj.previous_page_number }}">Last Page</a>
+                        {% endif %}
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                            {% endif %}
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                            <a class="btn btn-outlife-info mb-4" href="?page={{ page_obj.next_page_number }}">Next Page</a>
+                            <a class="btn btn-outlife-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last Page</a>
+                        {% endif %}</center>
+                    {% endif %}
+        </section>   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src='js/scripts.js'></script>
+</body>
+</html>
