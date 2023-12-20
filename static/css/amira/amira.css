@@ -1,0 +1,417 @@
+html, body {
+    height: 100%;
+}
+
+.wrapper {
+    width: 100%;
+    background: #817ac1;
+    min-height: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.x1 {
+    left: 5%;
+    -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    transform: scale(0.9);
+    opacity: 0.6;
+    -webkit-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+    -moz-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+    animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+}
+
+.x2 {
+    left: 25%;
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    transform: scale(0.6);
+    opacity: 0.9;
+    -webkit-animation: moveclouds 25s linear infinite, sideWays 5s ease-in-out infinite alternate;
+    -moz-animation: moveclouds 25s linear infinite, sideWays 5s ease-in-out infinite alternate;
+    animation: moveclouds 25s linear infinite, sideWays 5s ease-in-out infinite alternate;
+}
+
+.x3 {
+    left: 55%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.8;
+    -webkit-animation: moveclouds 20s linear infinite, sideWays 4s ease-in-out infinite alternate;
+    -moz-animation: moveclouds 20s linear infinite, sideWays 4s ease-in-out infinite alternate;
+    animation: moveclouds 20s linear infinite, sideWays 4s ease-in-out infinite alternate;
+}
+
+.x4 {
+    left: 72%;
+    -webkit-transform: scale(0.75);
+    -moz-transform: scale(0.75);
+    transform: scale(0.75);
+    opacity: 0.9;
+    -webkit-animation: moveclouds 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+    -moz-animation: moveclouds 18s linear infinite, sideWays 0s ease-in-out infinite alternate;
+    animation: moveclouds 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+}
+
+.x5 {
+    left: 88%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.3;
+    -webkit-animation: moveclouds 7s linear infinite, sideWays 1s ease-in-out infinite alternate;
+    -moz-animation: moveclouds 7s linear infinite, sideWays 1s ease-in-out infinite alternate;
+    animation: moveclouds 7s linear infinite, sideWays 1s ease-in-out infinite alternate;
+}
+
+.x6 {
+    left: 33%;
+    opacity: 1;
+    -webkit-animation: moveclouds 2s linear infinite, swayWays 1s ease-in-out infinite alternate;
+    animation: moveclouds 10s linear infinite, swayWays 9s ease-in-out infinite alternate;
+}
+
+.x6 {
+    left: 33%;
+    opacity: 1;
+    -webkit-animation: moveclouds 2s linear infinite, swayWays 1s ease-in-out infinite alternate;
+    animation: moveclouds 10s linear infinite, swayWays 9s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes moveclouds {
+    0% {
+        top: 500px;
+    }
+    100% {
+        top: -500px;
+    }
+}
+
+@keyframes moveclouds {
+    0% {
+        top: 500px;
+    }
+    100% {
+        top: -500px;
+    }
+}
+
+@-webkit-keyframes sideWays {
+    0% {
+        margin-left: 0px;
+    }
+    100% {
+        margin-left: 50px;
+    }
+}
+
+@keyframes sideWays {
+    0% {
+        margin-left: 0px;
+    }
+    100% {
+        margin-left: 50px;
+    }
+}
+
+@keyframes swayWays {
+    0% {
+        transform: rotate(12deg);
+        left: -0.3%;
+    }
+    33% {
+        transform: rotate(-2deg);
+        left: 0.7%;
+    }
+    100% {
+        transform: rotate(0deg);
+        left: -12%;
+    }
+}
+
+/* HEART CODE */
+.altheart {
+    background: url(http://static.indigoimages.ca/2016/shop/113439_img25_twotoneheart.png) no-repeat center;
+    width: 24px;
+    height: 21px;
+    position: relative;
+    display: block;
+}
+
+.heart {
+    position: relative;
+}
+
+.heart:before,
+.heart:after {
+    position: absolute;
+    content: "";
+    left: 18px;
+    top: 0;
+    width: 18px;
+    height: 30px;
+    background: #CC2022;
+    -moz-border-radius: 20px 50% 0 0;
+    border-radius: 30px 30px 0 0;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+}
+
+.heart:after {
+    left: 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+}
+
+.btn-outline-primary {
+    background-color: #f0eef3 !important;
+    border-color: #383464 !important;
+    color: #383464 !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:active,
+.btn-outline-primary:visited {
+    background-color: #8133ff !important;
+    color: #f0eef3 !important;
+}
+
+.btn-outline-primary:active,
+.btn-outline-primary:visited {
+    background-color: #7300ff !important;
+}
+
+.title-text {
+    font-style: italic;
+    font-family: 'Indie Flower', cursive;
+    color: white;
+}
+
+.sentence {
+    margin-top: 20px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out forwards;
+}
+
+#sentence-placeholder {
+    font-size: 24px;
+    font-style: italic;
+    color: #ffffff;
+    margin: 0;
+    padding: 10px;
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+div.card {
+    width: 100%;    
+    padding: 20px;
+    background-color: #383464;
+    border-radius: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Optional: Add some styling to the card content */
+div.card h1.title-text {
+  color: #ffffff; /* Set text color */
+}
+
+div.card p {
+  color: #ffffff; /* Set text color */
+}
+
+.displaying-container {
+    margin-top: 25px;
+    display: flex;
+    gap: 2.2px;
+    flex-wrap: wrap;
+}   
+
+@media(max-width: 768px) {
+    .displaying-container {
+        gap: 10px; 
+    }
+    .card {
+        width: 100%;
+    }
+}
+
+.displaying-item {
+    flex-grow: 1;
+    flex-basis: 200;
+} 
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}
+
+h2, p {
+    text-align: center;
+    font-family: 'Nunito', sans-serif; /* Use Nunito font */
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #c1a5d2; /* Set the text color */
+    text-shadow: 0 0 10px #c1a5d2, 0 0 10px #c1a5d2, 0 0 30px #c1a5d2; /* Add multiple shadows to create the glow effect */
+}
+
+p {
+    font-size: 1em;
+    color: #fff; /* Set the text color */
+    text-shadow: 0 0 10px #c1a5d2, 0 0 10px #c1a5d2, 0 0 30px #c1a5d2; /* Add multiple shadows to create the glow effect */
+}
+
+.hidden-images-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.enlarge-image {
+    width: 25%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.enlarge-image:hover {
+    transform: scale(1.2);
+}
+
+.enlarged-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    display: none;
+}
+
+.enlarged-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 20px;
+}
+
+/* General Styles */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #817ac1;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* Wrapper Styles */
+
+.wrapper {
+    text-align: center;
+}
+
+/* Heart Animation Styles */
+
+/* ... (Your existing heart animation styles) ... */
+
+/* Card Styles */
+
+div.card {
+    width: 100%;
+    padding: 20px;
+    background-color: #383464;
+    border-radius: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    margin-top: 25px;
+}
+
+div.card h1.title-text {
+    color: #ffffff;
+}
+
+div.card p {
+    color: #ffffff;
+}
+
+/* Displaying Container Styles */
+
+.displaying-container {
+    display: flex;
+    gap: 2.2px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.displaying-item {
+    flex-grow: 1;
+    flex-basis: 200px; /* Adjust as needed */
+}
+
+/* Row and Column Styles */
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex: 50%;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+    .displaying-container {
+        gap: 10px;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .column {
+        flex: 100%;
+        margin-top: 15px; /* Adjust as needed */
+    }
+
+    .enlarge-image {
+        width: 100%;
+        flex: 0 0 100%;
+    }
+}
+
+#dogGif {
+    animation: none !important;
+    transition: none !important;
+}

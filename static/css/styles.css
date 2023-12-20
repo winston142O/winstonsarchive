@@ -1,0 +1,15 @@
+/* Add this style to your existing stylesheet or create a new one */
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+}
+
+.col {
+    margin: 20px;
+}
+
+.form-group {
+    margin-top: 20px;
+}
+

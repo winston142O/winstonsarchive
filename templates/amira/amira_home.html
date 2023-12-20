@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>TE AMO</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="{% static 'css/amira/amira.css' %}">
+        <link rel="stylesheet" href="{% static 'css/amira/flower.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap">
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+    </head>
+    <body style="background-color:#817ac1;">          
+        <section>  
+            <div class="wrapper">   
+                <!-- FALLING HEART ANIMATION -->     
+                <div class="heart x1"></div>
+                <div class="heart x2"></div>
+                <div class="heart x3"></div>
+                <div class="heart x4"></div>
+                <div class="heart x5"> </div>
+                <div class="altheart x6"></div>
+                <!-- FALLING HEART ANIMATION END -->     
+                
+                <!-- FLOWER GOES HERE -->      
+                <h1 class="title-text">para mi hermosa novia...</h1>     
+                <img src="{% static 'css/amira/imgs/pinkflowers.gif' %}" style="filter: blur(0.7px);" alt="Pink flowers">                
+                {% comment %} <img src="{% static 'css/amira/imgs/sunflower.gif' %}" alt="Sun flower" style=""> {% endcomment %}
+            </div>
+        </section>
+        <section class="text-center" style="margin-top: 25px">
+            <div class="row justify-content-center">
+                <div class="card" style="max-width: 625px;">
+                    <div style="display: block; margin-bottom: 0px" onclick="getRandomSentence()">
+                        <button type="button" class="btn btn-outline-primary btn-lg">Click me!</button>
+                    </div>
+                    <div class="sentence mx-auto">
+                        <p id="sentence-placeholder"></p>
+                    </div>
+                </div>
+            </div>  
+        </section>
+        <section class="text-center" style="margin-top: 25px">
+            <div class="card mx-auto" style="max-width: 800px; display: block;">
+                <div class="row">
+                    <div class="column">
+                        <img src="{% static 'css/amira/imgs/us/our-thumbnail.jpg' %}" style="width: 300px; height: 300px; border-radius: 20px" alt="Us <3">                
+                    </div>
+                    <div class="column" style="margin-top: 60px">
+                        <h2 style="color: #ffffff">mi amor hermoso ≧◡≦</h2>
+                        <p style="color: #ffffff; font-size: 20px">we've been together for</p>
+                        <p style="color: #ffffff; font-size: 16px" id="counter" class="counter">Loading...</p>
+                        <p style="color: #ffffff; font-size: 20px">and i can't wait to spend some more time you!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="text-center" style="margin-top: 25px">
+            <div class="card mx-auto" style="max-width: 800px; display: block;">
+                <h2 style="color: #ffffff">some of our memories...</h2>
+                <div class="row">
+                    <div class="column">
+                        <!-- Buttons to filter images -->
+                        <div class="btn-group" style="display: flex; flex-wrap: wrap; padding: 50px" id="month-buttons">
+                            {% for month, images in images_by_month.items %}
+                                <button type="button" class="btn btn-outline-primary btn-lg filter-button" data-month="{{ month }}" style="border-radius: 5px; flex-basis: calc(33.33% - 10px); margin: 5px;">{{ month }}</button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>      
+        <section class="text-center" style="margin-top: 25px">
+            <div class="row">      
+                {% for month, images in images_by_month.items %}
+                    <div class="hidden-images hidden-images-container" id="{{ month }}">
+                        {% for image in images %}
+                            <img src="{% static 'css/amira/imgs/us/' %}{{ month }}/{{ image }}"
+                                class="enlarge-image"
+                                alt="Us <3"
+                                onclick="enlargeImage(this)"
+                                style="filter: blur(0px); box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);">
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+            <img id="dogGif" src="{% static 'css/amira/imgs/dog-shaking.gif' %}" style="filter: blur(0px);" alt="Dogoo">
+        </section>
+    </body>
+</html>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+    function getRandomSentence() {
+        const sentencePlaceholder = document.getElementById('sentence-placeholder');
+    
+        sentencePlaceholder.style.opacity = 0;
+    
+        fetch('http://localhost:8000/api/sentences')
+            .then(response => response.json())
+            .then(data => {
+                const randomIndex = Math.floor(Math.random() * data.length);
+                const randomSentence = data[randomIndex].sentence;
+    
+                sentencePlaceholder.innerText = randomSentence;
+    
+                sentencePlaceholder.style.opacity = 1;
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }    
+    // Calculate the time difference between the specified date and now
+    function calculateTimeDifference() {
+        const startDate = new Date('December 19, 2022 00:00:00 GMT');
+        const currentDate = new Date();
+        const timeDifference = currentDate - startDate;
+
+        const seconds = Math.floor(timeDifference / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(minutes / 60);
+        const days = Math.floor(hours / 24);
+
+        return {
+            days: days,
+            hours: hours % 24,
+            minutes: minutes % 60,
+            seconds: seconds % 60
+        };
+    }
+
+    // Update the counter every second
+    function updateCounter() {
+        const counterElement = document.getElementById('counter');
+
+        function update() {
+            const time = calculateTimeDifference();
+            counterElement.innerHTML = `${time.days} days ${time.hours} hours ${time.minutes} minutes ${time.seconds} seconds`;
+        }
+
+        // Initial update
+        update();
+
+        // Update every second
+        setInterval(update, 1000);
+    }
+
+    // Call the function to start the counter
+    updateCounter();    
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const enlargedImage = document.createElement('div');
+        enlargedImage.className = 'enlarged-image';
+        document.body.appendChild(enlargedImage);
+
+        function enlargeImage(image) {
+            const clone = image.cloneNode(true);
+            enlargedImage.innerHTML = '';
+            enlargedImage.appendChild(clone);
+            clone.style.filter = 'None';
+            enlargedImage.style.display = 'flex';
+
+            // Add a click event listener to hide the enlarged image when clicked
+            enlargedImage.addEventListener('click', function () {
+                enlargedImage.style.display = 'none';
+            });
+        }
+
+        function filterImages(month) {
+            // Hide all images, including the enlarged image
+            const hiddenImages = document.querySelectorAll('.hidden-images');
+            hiddenImages.forEach(element => {
+                element.style.display = 'none';
+            });
+
+            // Hide the enlarged image
+            enlargedImage.style.display = 'none';
+
+            // Show images for the selected month
+            const selectedImages = document.getElementById(month);
+            if (selectedImages) {
+                selectedImages.style.display = 'block';
+            }
+
+            // Attach click event listeners to the images of the selected month
+            const enlargeImages = selectedImages.querySelectorAll('.enlarge-image');
+            enlargeImages.forEach(image => {
+                image.addEventListener('click', () => {
+                    enlargeImage(image);
+                });
+            });
+        }
+
+        // Call the function to start the counter
+        updateCounter();
+
+        // Add event listeners to the filter buttons
+        const filterButtons = document.querySelectorAll('.filter-button');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const month = button.getAttribute('data-month');
+                filterImages(month);
+            });
+        });
+
+        // Initial filter based on current month or any default month
+        const initialMonth = 'default'; // Replace 'default' with the desired default month
+        filterImages(initialMonth);
+    });
+</script>
