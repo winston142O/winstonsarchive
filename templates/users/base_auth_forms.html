@@ -2,6 +2,15 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="content-section" style="width: auto;">
+        <div class="messages-container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
         <div class="card shadow" style="border-radius: 20px">
             <div class="card-body">
                 <form method="POST">
