@@ -1,31 +1,14 @@
-{% extends "base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
-    <div class="content-section" style="width: auto;">
-        <div class="card shadow" style="border-radius: 20px">
-            <div class="card-body">
-                <form method="POST">
-                    {% csrf_token %}
-                    <fieldset class="form-group">
-                        {{ form|crispy }}
-                    </fieldset>
-                    <div class="form-group">
-                        <button class="btn btn-primary" style="width: 100%" type="submit">Login</button>                        
-                    </div>
-                </form>
-            </div>
-        </div>    
-        <div class="supporting-section">
-            <div>
-                <small class="text-muted ml-2">    
-                    Forgot your password? <a href="{% url 'password_reset' %}">Request a reset</a>        
-                </small>
-            </div>
-            <div>
-                <small class="text-muted">
-                    Don't have an account? <a class="ml-2" href="{% url 'register' %}">Create a new one.</a>
-                </small>
-            </div>
-        </div>
-    </div>    
+{% extends "users/base_auth_forms.html" %}
+{% block submit_label %}Login{% endblock %}
+{% block support_options %}
+    <div>
+        <small class="text-muted ml-2">                        
+            Forgot your password? <a href="{% url 'password_reset' %}">Request a reset</a>        
+        </small>
+    </div>
+    <div>
+        <small class="text-muted">
+            Don't have an account? <a class="ml-2" href="{% url 'register' %}">Create a new one.</a>
+        </small>
+    </div>
 {% endblock %}

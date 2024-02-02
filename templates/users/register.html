@@ -1,0 +1,9 @@
+{% extends "users/base_auth_forms.html" %}
+{% block submit_label %}Register{% endblock %}
+{% block support_options %}
+    <div>
+        <small class="text-muted">
+            Already have an account? <a class="ml-2" href="{% url 'login' %}">Log in.</a>
+        </small>
+    </div>
+{% endblock %}

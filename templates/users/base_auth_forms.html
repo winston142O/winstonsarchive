@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section" style="width: auto;">
+        <div class="card shadow" style="border-radius: 20px">
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-primary" style="width: 100%" type="submit">{% block submit_label %}{% endblock %}</button>                        
+                    </div>
+                </form>
+            </div>
+        </div>    
+        <div class="supporting-section">
+            {% block support_options %}
+            {% endblock %}            
+        </div>
+    </div>    
+{% endblock %}
