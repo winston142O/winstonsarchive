@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Post, Tag
+from amira.models import Sentence
 
-# Register your models here.
+admin.site.register((Post, Tag))
