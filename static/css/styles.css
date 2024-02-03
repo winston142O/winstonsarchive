@@ -1,5 +1,9 @@
 body {
-    background-color: #f1f3f2; /* Page bg */
+    background-color: #CEE0FF; /* Page bg */
+}
+
+#site-footer {
+    background-color: #186cfc !important;
 }
 
 .flex-container {
@@ -50,12 +54,18 @@ a {
     justify-content: center;
     align-items: center;    
     height: 100vh;
+    margin-top: 65px;
+    margin-bottom: 65px;
 }
 
 @media (max-width: 768px) {
     .responsive-section {
         margin-left: 20px;
-        margin-right: 20px;
+        margin-right: 20px;     
+        justify-content: center;
+        align-items: center;
+        margin-top: 65px;
+        margin-bottom: 65px;
     }
 }
 
@@ -81,4 +91,20 @@ a {
     width: auto;
     margin-top: 30px;
     margin-bottom: 10px;
+}
+
+.header-of-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.content-of-card {
+    flex-direction: column;
+    align-content: center !important;
+    justify-content: space-between;
+    align-items: flex-start;
 }
