@@ -29,7 +29,7 @@
                             <a class="nav-link {% if request.resolver_match.url_name == 'posts' %}active{% endif %}" href="#">Posts</a> <!--TODO: Update href -->
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="#">About me</a> <!--TODO: Update href -->
+                            <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about-Winston' %}">About me</a> <!--TODO: Update href -->
                         </li>              
                     </ul>
                     <ul class="navbar-nav mb-2 mb-lg-0 d-flex" style="column-gap: 10px">
@@ -58,7 +58,7 @@
                             </li>                                                                
                         {% else %} 
                             <li class="nav-item">
-                                <a class="btn btn-primary {% if request.resolver_match.url_name == 'login' %}active{% endif %}" href="{% url 'login' %}" data-bs-toggle="button" role="button" aria-pressed="false">
+                                <button class="btn btn-primary {% if request.resolver_match.url_name == 'login' %}active{% endif %}" onclick="window.location.href='{% url 'login' %}'" data-bs-toggle="button" role="button" aria-pressed="false">
                                     <div class="d-flex align-items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
@@ -66,7 +66,7 @@
                                         </svg>
                                         <span class="ms-2">Login</span>
                                     </div>
-                                </a>
+                                </button>
                             </li>                                                                
                         {% endif %}
                     </ul>
@@ -77,10 +77,6 @@
             {% block content %}
             {% endblock content %}
         </section>          
-        {% comment %} <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#0099ff" fill-opacity="1" d="M0,128L48,160C96,192,192,256,288,240C384,224,480,128,576,101.3C672,75,768,117,864,149.3C960,181,1056,203,1152,197.3C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-        </svg>    {% endcomment %}
-        <!--Waves Container-->
         <div>
             <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">

@@ -49,6 +49,11 @@ a {
     color: #a200ff !important;
 }
 
+.card-body {
+    width: 351.2px;
+    transition: width 0.5;
+}
+
 .responsive-section {
     display: flex;
     justify-content: center;
@@ -107,4 +112,48 @@ a {
     align-content: center !important;
     justify-content: space-between;
     align-items: flex-start;
+}
+
+.hide-div {
+    display: none;
+}
+
+.fade-in {
+    opacity: 0;
+    max-height: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, max-height 0.5s, visibility 0.5s;
+}
+
+.visible {
+    opacity: 1;
+    max-height: 1000px;
+    visibility: visible;
+    width: auto;
+    transition: opacity 0.5s, max-height 0.5s, visibility 0.5s, width 0.5s;
+}
+
+.alert-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.alert-info {
+    background-color: #00ddff;
+    color: #fff;
+}
+
+.alert-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.alert-danger {
+    background-color: #ff0019;
+    color: #fff;
+}
+
+.winston-card {
+    display: flex;
+    border-radius: 20px;
 }

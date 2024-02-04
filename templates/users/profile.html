@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+    <div class="content-section" style="width: auto;">
+        <div class="messages-container">
+            {% if messages %}
+                {% for message in messages %}
+                    {% if 'success' in message.tags %}
+                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div> 
+                    {% elif 'info' in message.tags %}
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div> 
+                    {% elif 'danger' in message.tags %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div> 
+                    {% else %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div> 
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="card shadow" style="border-radius: 20px;">
+            <div class="card-body">
+                <div class="header-of-card">
+                    <h3 class="card-title mb-4" style="margin-bottom: 0px !important;">My Account</h3>
+                    <button type="button" id="edit-profile" class="btn btn-outline-primary" data-bs-toggle="button" role="button" aria-pressed="false">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                            </svg>
+                            <span class="ms-2">Edit</span>
+                        </div>
+                    </button>
+                </div>
+
+                <center>
+                    <img 
+                        class="rounded-circle profile-img"
+                        style="width: 200px; height: 200px; margin-bottom: 15px; margin-top: 15px;"
+                        src="{{ user.profile.image.url }}"
+                    />
+                </center>
+                
+                <div id="user-data">
+                    <hr class="my-4">
+
+                    <h2 class="account-heading">{{ user.username }}</h2>
+                    <p class="text-muted">{{ user.first_name }} {{ user.last_name }}</p>
+                    <p class="text-muted">{{ user.email }}</p>
+                    <hr class="my-4">
+                
+                    <h4 class="mb-3"><strong>About Me:</strong></h4>
+                    <p class="mb-3">{{ user.profile.about }}</p>
+                    
+                    <hr class="my-4">
+                    
+                    <p class="text-muted"><strong>Joined on:</strong> {{ user.date_joined | date:"Y/m/d" }}</p>
+                    <p class="text-muted"><strong>Last Seen:</strong> {{ user.last_login | date:"Y/m/d" }} at {{ user.last_login | date:"H:i:s" }}</p>
+                </div>
+                <div id="edit-user-form">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            {{ u_form|crispy }}
+                            {{ p_form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button id="save-profile-button" class="btn btn-outline-primary" style="width: 100%;" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>        
+            </div>
+        </div>          
+    </div>    
+    <script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}
