@@ -5,7 +5,6 @@ from PIL import Image
 class Profile(models.Model):    
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
-    bg_image = models.ImageField(default='banners/default.jpg', upload_to='banners')
     about = models.TextField(default='Hi! I am new to Winston\'s Archive.')
 
     def __str__(self):
