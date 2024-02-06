@@ -1,0 +1,9 @@
+.post-card:hover {
+    transform: translateY(0px);
+}
+
+/* .post-container {
+    display: flex;
+    align-items: stretch; 
+    height: 80%; 
+} */

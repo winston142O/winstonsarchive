@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/tags.css' %}">    
+    <div class="post-container" style="margin-top: 0px">
+        <div style="text-align: center; padding: 20px;">
+            <h2>Search Results for "{{ query }}"</h2>
+            {% if selected_tags %}
+                <p> with tags: {%for tag in selected_tags %} {{tag}} {% endfor %}</p>
+            {% endif %}
+            <p>{{ results.count }} results found</p>
+            <form class="search-bar-form" style="margin-top: 20px;" action="{% url 'search_posts' %}" method="get" id="search-form">
+                <input class="form-control mr-sm-2" style="width: 75%; border-radius: 5px;" type="search" name="q" placeholder="Search" aria-label="Search" id="search-input">
+                <input type="hidden" name="tags" id="selected-tags" value="">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" style="border-radius: 5px;">Search</button>
+            </form>
+            
+            <div class="tags-container" style="margin-top: 15px">
+                {% for tag in all_tags %}
+                    <button class="btn shadow btn-sm btn-tag btn-tag-{{ tag.name|lower }}"><strong>{{ tag.name }}</strong></button>
+                {% endfor %}
+            </div>  
+        </div>
+        {% for post in results %}
+            <div class="card shadow post-card" style="border-radius: 10px;">
+                <div class="card-body" style="display: flex; column-gap: 20px;">
+                    <div class="card-column" style="display: flex; align-items: center;">
+                        <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" style="width: 60px; height: 60px">
+                    </div>
+                    <div class="card-column">
+                        <div class="header-of-card">
+                            <h3 class="card-title mb-4" style="margin-bottom: 10px !important;">{{ post.title }}</h3>                
+                        </div>
+                        <a href="#" class="text-decoration-none text-dark" style="margin-top: 10px"> 
+                            <h6 class="card-subtitle mb-2" style="margin-bottom: 5px !important;">By {{ post.author.username }}</h6>
+                        </a>
+                        <p style="margin-bottom: 10px;">Posted on {{ post.date_posted|date:"F d, Y" }}</p>                    
+                        <div class="tags-container">
+                            {% for tag in post.tags.all %}
+                                <button class="btn btn-sm btn-tag-{{ tag.name|lower }}">{{ tag.name }}</button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>  
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{% static 'js/search_posts.js' %}"></script>
+{% endblock %}

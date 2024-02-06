@@ -26,11 +26,19 @@
                             <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" aria-current="page" href="#">Home</a> <!--TODO: Update href -->
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.resolver_match.url_name == 'posts' %}active{% endif %}" href="#">Posts</a> <!--TODO: Update href -->
+                            <a class="nav-link {% if request.resolver_match.url_name == 'blog-posts' %}active{% endif %}" href="{% url 'blog-posts' %}">Posts</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about-Winston' %}">About me</a> <!--TODO: Update href -->
-                        </li>              
+                        </li>  
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'portfolio' %}active{% endif %}" href="{% url 'about-Winston' %}">Portfolio</a> <!--TODO: Update href -->
+                        </li>  
+                        {% if user.is_superuser %}            
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Amira Zone</a>
+                        </li>  
+                        {% endif %}
                     </ul>
                     <ul class="navbar-nav mb-2 mb-lg-0 d-flex" style="column-gap: 10px">
                         {% if user.is_authenticated %}                

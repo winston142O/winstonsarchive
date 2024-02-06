@@ -157,3 +157,41 @@ a {
     display: flex;
     border-radius: 20px;
 }
+
+.post-container {
+    width: 100%;
+    max-width: 65%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    word-break: break-word;
+}
+
+.post-card {
+    transition: transform 0.5s ease; 
+}
+
+.post-card:hover {
+    transform: translateY(-15px);
+}
+
+@media (max-width: 768px) {
+    .post-container {
+        max-width: 100%;
+    }
+}
+
+.search-bar-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar-form button {
+    margin-left: 25px; 
+}
+
+.btn-tag.selected-tag {
+    background-color: gray;
+    color: white; /* Adjust text color if needed */
+}
