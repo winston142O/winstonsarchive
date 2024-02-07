@@ -50,7 +50,7 @@ a {
 }
 
 .card-body {
-    width: 351.2px;
+    width: 100%;
     transition: width 0.5;
 }
 
@@ -59,8 +59,9 @@ a {
     justify-content: center;
     align-items: center;    
     height: 100vh;
-    margin-top: 65px;
+    margin-top: 125px;
     margin-bottom: 65px;
+    height: auto;
 }
 
 @media (max-width: 768px) {
@@ -69,8 +70,9 @@ a {
         margin-right: 20px;     
         justify-content: center;
         align-items: center;
-        margin-top: 65px;
-        margin-bottom: 65px;
+        margin-top: 125px;
+        margin-bottom: 125px;
+        height: auto;
     }
 }
 

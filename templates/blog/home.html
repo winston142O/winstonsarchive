@@ -43,6 +43,24 @@
                 </div>
             </div>
         {% endfor %}
+        <!-- Pagination controls -->
+        {% if is_paginated %}
+            <center>{% if page_obj.has_previous %}
+                <a class="btn btn-outlife-info mb-4" href="?page=1">First Page</a>
+                <a class="btn btn-outlife-info mb-4" href="?page={{ page_obj.previous_page_number }}">Last Page</a>
+            {% endif %}
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <a class="btn btn-outlife-info mb-4" href="?page={{ page_obj.next_page_number }}">Next Page</a>
+                <a class="btn btn-outlife-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last Page</a>
+            {% endif %}</center>
+        {% endif %}
     </div>  
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{% static 'js/search_posts.js' %}"></script>
