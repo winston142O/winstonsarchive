@@ -58,7 +58,6 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;    
-    height: 100vh;
     margin-top: 125px;
     margin-bottom: 65px;
     height: auto;
@@ -196,4 +195,12 @@ a {
 .btn-tag.selected-tag {
     background-color: gray;
     color: white; /* Adjust text color if needed */
+}
+
+.comment-btn {
+    margin-left: 0px
+}
+
+.comment-column {
+    width: 100%;
 }

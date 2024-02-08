@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import Post, Tag
-from amira.models import Sentence
+from .models import Post, Tag, Comment
 
-admin.site.register((Post, Tag))
+admin.site.register((Post, Tag, Comment))

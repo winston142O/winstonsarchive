@@ -6,7 +6,7 @@
     <div class="post-container" style="margin-top: 0px">
         <div class="card shadow post-card" style="border-radius: 10px;">
             <div class="card-body" style="display: flex; column-gap: 20px;">
-                <div class="card-column" style="display: flex; align-items: center;">
+                <div class="card-column" style="display: flex; align-items: baseline;">
                     <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" style="width: 60px; height: 60px">
                 </div>
                 <div class="card-column">
@@ -29,8 +29,52 @@
                     </div>
                 </div>
             </div>
+        </div>        
+        <h3 class="card-title mb-4" style="margin-bottom: 10px !important; margin-top: 20px;">Comments</h3>
+        <div class="card shadow post-card" style="border-radius: 10px; margin-top: 20px;">
+            <div class="card-body" style="display: flex; column-gap: 20px;">
+                <div class="card-column">
+                    <!-- User's profile picture -->
+                    <img src="{{ logged_user.profile.image.url }}" alt="Profile picture" style="width: 50px; height: 50px; border-radius: 50%;">
+                </div>
+                <div class="card-column comment-column">
+                    <!-- Text box for comment -->
+                    <textarea class="form-control" id="comment-txt-box" placeholder="Write your comment here" style="margin-top: 0px;"></textarea>
+                    <button class="btn btn-primary comment-btn" id="comment-submit-btn" style="margin-top: 10px;">Post Comment</button>
+                </div>
+            </div>
         </div>
+        {% if not post.comments.all %}
+            <div class="card shadow post-card" style="border-radius: 10px; margin-top: 20px;">
+                <div class="card-body" style="display: flex; column-gap: 20px;">
+                    <div class="card-column">
+                        <p style="margin-bottom: 10px;">No comments yet</p>                    
+                    </div>
+                </div>
+            </div>
+        {% else %}
+        {% for comment in post.comments.all %}            
+            <div class="card shadow post-card" style="border-radius: 10px; margin-top: 20px;">
+                <div class="card-body" style="display: flex; column-gap: 20px;">
+                    <div class="card-column" style="display: flex; align-items: baseline;">
+                        <img class="rounded-circle article-img" src="{{ comment.created_by.profile.image.url }}" style="width: 60px; height: 60px">
+                    </div>
+                    <div class="card-column">
+                        <a href="#" class="text-decoration-none text-dark" style="margin-top: 10px"> 
+                            <h6 class="card-subtitle mb-2" style="margin-bottom: 5px !important;">By {{ comment.created_by.username }}</h6>
+                        </a>
+                        <p style="margin-bottom: 10px;">Posted on {{ comment.date_added|date:"F d, Y" }}</p>                    
+                        <div class="post-content">
+                            <p>{{ comment.body|safe }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% endif %}
     </div>  
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{% static 'js/search_posts.js' %}"></script>
+    <script src="{% static 'js/auto_adjust_margin.js' %}"></script>
+    <script src="{% static 'js/comment_form.js' %}"></script>
 {% endblock %}

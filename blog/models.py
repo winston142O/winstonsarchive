@@ -30,4 +30,4 @@ class Comment(models.Model):
     date_added = models.DateTimeField(default=timezone.now)
     
     def __str__(self):
-        return '{} - {}'.format(self.post.titulo, self.name, self.body)
+        return '{} - {}'.format(self.post.title, self.created_by, self.body)

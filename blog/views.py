@@ -28,7 +28,7 @@ def search_posts(request):
             results = Post.objects.filter(title__icontains=query)
             
         else:
-            results = Post.objects.filter(Q(title__icontains=query) & Q(tags__name__in=tags)).distinct()
+            results = Post.objects.filter(Q(title__icontains=query) & Q(tags__name__in=tags)).distinct().order_by('-date_posted')
         context = {'results': results, 'query': query, 'selected_tags':tags, 'all_tags': Tag.objects.all()}
         
     else:
@@ -40,7 +40,6 @@ class PostDetail(ListView):
     model = Comment
     template_name = "blog/post_detail.html"
     context_object_name = "comments"
-    paginate_by = 10
     
     def get_queryset(self):
         return Comment.objects.filter(post=self.kwargs['pk'])
@@ -48,4 +47,6 @@ class PostDetail(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['post'] = Post.objects.get(pk=self.kwargs['pk'])
+        context['tags'] = context['post'].tags.all()  
+        context['logged_user'] = self.request.user    
         return context
