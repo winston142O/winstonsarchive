@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var editProfileBtn = document.getElementById('edit-profile');
     var editUserForm = document.getElementById('edit-user-form');
     var userData = document.getElementById('user-data');
+    var cancel_edit = document.getElementById('cancel-edit');
 
     // Add click event listener
     editProfileBtn.addEventListener('click', function() {
@@ -24,5 +25,14 @@ document.addEventListener('DOMContentLoaded', function() {
             editUserForm.classList.add('visible');
             userData.classList.remove('visible');
         }, 200);        
+    });
+
+    // Add click event listener
+    cancel_edit.addEventListener('click', function() {
+        editUserForm.classList.remove('visible');
+        userData.classList.add('visible');
+        setTimeout(function() {
+            editUserForm.classList.add('hide-div');
+        }, 400);        
     });
 });

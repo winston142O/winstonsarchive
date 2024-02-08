@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
-    <div class="content-section" style="width: auto;">
+    <div class="content-section" style="width: 35%;">
         <div class="messages-container">
             {% if messages %}
                 {% for message in messages %}
@@ -42,7 +42,7 @@
                             </svg>
                             <span class="ms-2">Edit</span>
                         </div>
-                    </button>
+                    </button>                    
                 </div>
 
                 <center>
@@ -78,6 +78,9 @@
                         </fieldset>
                         <div class="form-group">
                             <button id="save-profile-button" class="btn btn-outline-primary" style="width: 100%;" type="submit">Save</button>
+                            <button type="button" id="cancel-edit" class="btn btn-outline-danger" style="width: 100%; margin-top: 10px" data-bs-toggle="button" role="button" aria-pressed="false">                                                                
+                                Cancel                                
+                            </button>
                         </div>
                     </form>
                 </div>        
