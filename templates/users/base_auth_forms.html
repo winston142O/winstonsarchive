@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
     <div class="content-section" style="width: auto;">
         <div class="messages-container">
@@ -47,4 +48,6 @@
             {% endblock %}            
         </div>
     </div>    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{% static 'js/auto_adjust_margin.js' %}"></script>
 {% endblock %}
