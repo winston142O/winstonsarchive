@@ -2,6 +2,11 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from .models import Post, Comment, Tag
 from django.db.models import Q
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse, Http404
+from django.views import View
+from django.contrib import messages
 
 class PostListView(ListView):
     model = Post
@@ -42,7 +47,7 @@ class PostDetail(ListView):
     context_object_name = "comments"
     
     def get_queryset(self):
-        return Comment.objects.filter(post=self.kwargs['pk'])
+        return Comment.objects.filter(post=self.kwargs['pk']).order_by('-date_added')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -50,3 +55,27 @@ class PostDetail(ListView):
         context['tags'] = context['post'].tags.all()  
         context['logged_user'] = self.request.user    
         return context
+
+@method_decorator(login_required, name='dispatch')
+class CommentView(View):
+    """ Endpoint to create a new comment. """
+    
+    def post(self, request, *args, **kwargs):
+        # Get the post and comment text from the request
+        post_id = request.POST.get('post_id')
+        comment_text = request.POST.get('text')
+
+        if not post_id or not comment_text:
+            return JsonResponse({'message': 'Did not submit the appropiate parameters.'}, status=400)
+
+        try:
+            post = Post.objects.get(pk=post_id)
+            
+        except Post.DoesNotExist:
+            raise Http404('Post not found.')
+
+        comment = Comment.objects.create(post=post, body=comment_text, created_by=request.user)
+
+        messages.success(request, f'Your comment has been added!')
+        
+        return JsonResponse({'message': 'Comment created.', 'comment_id': comment.id})

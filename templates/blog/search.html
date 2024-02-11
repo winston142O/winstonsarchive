@@ -3,10 +3,15 @@
 {% load static %}
     <link rel="stylesheet" href="{% static 'css/tags.css' %}">    
     <div class="post-container" style="margin-top: 0px">
-        <div style="text-align: center; padding: 20px;">
-            <h2>Search Results for "{{ query }}"</h2>
+        <div style="text-align: center; padding: 20px;">            
+            <h2>Search Results for posts:</h2>
+            {% if query %}
+                <p><strong>With search query:</strong> {{ query }}</p>
+            {% else %}
+                <p>No search query provided.</p>
+            {% endif %}
             {% if selected_tags %}
-                <p> with tags: {%for tag in selected_tags %} {{tag}} {% endfor %}</p>
+                <p>Marked with tags: {%for tag in selected_tags %} {{tag}} {% endfor %}</p>
             {% endif %}
             <p>{{ results.count }} results found</p>
             <form class="search-bar-form" style="margin-top: 20px;" action="{% url 'search_posts' %}" method="get" id="search-form">
@@ -29,7 +34,9 @@
                     </div>
                     <div class="card-column">
                         <div class="header-of-card">
-                            <h3 class="card-title mb-4" style="margin-bottom: 10px !important;">{{ post.title }}</h3>                
+                            <a  href="{% url 'post-detail' pk=post.pk %}">
+                                <h3 class="card-title mb-4" style="margin-bottom: 10px !important;">{{ post.title }}</h3>
+                            </a>
                         </div>
                         <a href="#" class="text-decoration-none text-dark" style="margin-top: 10px"> 
                             <h6 class="card-subtitle mb-2" style="margin-bottom: 5px !important;">By {{ post.author.username }}</h6>

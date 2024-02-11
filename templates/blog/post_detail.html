@@ -2,8 +2,35 @@
 {% block content %}
 {% load static %}
     <link rel="stylesheet" href="{% static 'css/tags.css' %}">
-    <link rel="stylesheet" href="{% static 'css/post-detail.css' %}">    
+    <link rel="stylesheet" href="{% static 'css/post-detail.css' %}">  
     <div class="post-container" style="margin-top: 0px">
+        <div class="messages-container">
+            {% if messages %}
+                {% for message in messages %}
+                    {% if 'success' in message.tags %}
+                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div> 
+                    {% elif 'info' in message.tags %}
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div> 
+                    {% elif 'danger' in message.tags %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div> 
+                    {% else %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div> 
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>          
         <div class="card shadow post-card" style="border-radius: 10px;">
             <div class="card-body" style="display: flex; column-gap: 20px;">
                 <div class="card-column" style="display: flex; align-items: baseline;">
@@ -29,7 +56,7 @@
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>               
         <h3 class="card-title mb-4" style="margin-bottom: 10px !important; margin-top: 20px;">Comments</h3>
         <div class="card shadow post-card" style="border-radius: 10px; margin-top: 20px;">
             <div class="card-body" style="display: flex; column-gap: 20px;">
@@ -37,23 +64,14 @@
                     <!-- User's profile picture -->
                     <img src="{{ logged_user.profile.image.url }}" alt="Profile picture" style="width: 50px; height: 50px; border-radius: 50%;">
                 </div>
-                <div class="card-column comment-column">
+                <div class="card-column comment-column" id="comment-form" data-post-id="{{ post.id }}" data-url="{% url 'post-comment' %}">
                     <!-- Text box for comment -->
                     <textarea class="form-control" id="comment-txt-box" placeholder="Write your comment here" style="margin-top: 0px;"></textarea>
                     <button class="btn btn-primary comment-btn" id="comment-submit-btn" style="margin-top: 10px;">Post Comment</button>
                 </div>
             </div>
         </div>
-        {% if not post.comments.all %}
-            <div class="card shadow post-card" style="border-radius: 10px; margin-top: 20px;">
-                <div class="card-body" style="display: flex; column-gap: 20px;">
-                    <div class="card-column">
-                        <p style="margin-bottom: 10px;">No comments yet</p>                    
-                    </div>
-                </div>
-            </div>
-        {% else %}
-        {% for comment in post.comments.all %}            
+        {% for comment in comments %}            
             <div class="card shadow post-card" style="border-radius: 10px; margin-top: 20px;">
                 <div class="card-body" style="display: flex; column-gap: 20px;">
                     <div class="card-column" style="display: flex; align-items: baseline;">
@@ -71,7 +89,6 @@
                 </div>
             </div>
         {% endfor %}
-        {% endif %}
     </div>  
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{% static 'js/search_posts.js' %}"></script>
