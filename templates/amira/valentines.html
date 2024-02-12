@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TE AMO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/amira/amira.css' %}">
+    <link rel="stylesheet" href="{% static 'css/amira/flower.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body style="background-color: #ffff;">
+<section>
+    <div class="wrapper" style="background-color: #ffff;">
+        <!-- FALLING HEART ANIMATION -->
+        <div class="heart x1"></div>
+        <div class="heart x2"></div>
+        <div class="heart x3"></div>
+        <div class="heart x4"></div>
+        <div class="heart x5"> </div>
+        <div class="altheart x6"></div>
+        <!-- FALLING HEART ANIMATION END -->
+
+        <h1 class="title-text" style="color: red;"><strong>mi amor hermoso...</strong></h1>
+        <img id="valentine-gif" src="{% static 'css/amira/imgs/bear_rose.gif' %}" style="filter: blur(0.7px); width: 456px; height: 498px"
+             alt="bear with rose">
+        <div class="row justify-content-center" style="margin-bottom: 25px">
+            <div class="card" style="max-width: 625px;">
+                <h2 style="color: #ffffff" id="valentines-text">do you want to be my valentines?</h2>
+            </div>
+        </div>
+        <div style="display: block; margin-bottom: 0px">
+            <button type="button" id="yes-btn" class="btn btn-success btn-lg">YES</button>
+            <button type="button" id="no-btn" class="btn btn-danger btn-lg no-btn">NO</button>
+        </div>
+    </div>
+</section>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="{% static 'js/amira/valentines.js' %}"></script>

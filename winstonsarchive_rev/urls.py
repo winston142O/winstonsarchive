@@ -15,7 +15,6 @@ urlpatterns = [
     path("amira/", include("amira.urls")),
     path("blog/", include("blog.urls")),
     path("about-Winston/", about_me, name="about-Winston"),
-    path("api/", include("api.urls")),
     path("auth/", include("users.urls")),
     path("ckeditor/", include("ckeditor_uploader.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

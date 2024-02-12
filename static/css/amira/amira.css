@@ -185,13 +185,7 @@ html, body {
     color: #f0eef3 !important;
 }
 
-.btn-outline-primary:active,
-.btn-outline-primary:visited {
-    background-color: #7300ff !important;
-}
-
 .title-text {
-    font-style: italic;
     font-family: 'Indie Flower', cursive;
     color: white;
 }
@@ -230,13 +224,12 @@ div.card {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Optional: Add some styling to the card content */
 div.card h1.title-text {
-  color: #ffffff; /* Set text color */
+  color: #ffffff; 
 }
 
 div.card p {
-  color: #ffffff; /* Set text color */
+  color: #ffffff;
 }
 
 .displaying-container {
@@ -270,19 +263,19 @@ div.card p {
 
 h2, p {
     text-align: center;
-    font-family: 'Nunito', sans-serif; /* Use Nunito font */
+    font-family: 'Nunito', sans-serif; 
 }
 
 h2 {
     font-size: 1.5em;
-    color: #c1a5d2; /* Set the text color */
-    text-shadow: 0 0 10px #c1a5d2, 0 0 10px #c1a5d2, 0 0 30px #c1a5d2; /* Add multiple shadows to create the glow effect */
+    color: #c1a5d2; 
+    text-shadow: 0 0 10px #c1a5d2, 0 0 10px #c1a5d2, 0 0 30px #c1a5d2;
 }
 
 p {
     font-size: 1em;
-    color: #fff; /* Set the text color */
-    text-shadow: 0 0 10px #c1a5d2, 0 0 10px #c1a5d2, 0 0 30px #c1a5d2; /* Add multiple shadows to create the glow effect */
+    color: #fff; 
+    text-shadow: 0 0 10px #c1a5d2, 0 0 10px #c1a5d2, 0 0 30px #c1a5d2; 
 }
 
 .hidden-images-container {
@@ -341,12 +334,6 @@ body {
     text-align: center;
 }
 
-/* Heart Animation Styles */
-
-/* ... (Your existing heart animation styles) ... */
-
-/* Card Styles */
-
 div.card {
     width: 100%;
     padding: 20px;
@@ -375,7 +362,7 @@ div.card p {
 
 .displaying-item {
     flex-grow: 1;
-    flex-basis: 200px; /* Adjust as needed */
+    flex-basis: 200px; 
 }
 
 /* Row and Column Styles */
@@ -402,7 +389,7 @@ div.card p {
 
     .column {
         flex: 100%;
-        margin-top: 15px; /* Adjust as needed */
+        margin-top: 15px; 
     }
 
     .enlarge-image {
@@ -414,4 +401,17 @@ div.card p {
 #dogGif {
     animation: none !important;
     transition: none !important;
+}
+
+#no-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: top 0.7s, left 0.7s;
+}
+
+#yes-btn {
+    width: 63.65px;
+    height: 47.6px;
+    transition: width 0.7s, height 0.7s;
 }
