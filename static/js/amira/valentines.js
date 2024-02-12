@@ -4,22 +4,24 @@ window.onload = function() {
     const valentineGif = document.getElementById('valentine-gif');
     const valentinesText = document.getElementById('valentines-text');
     const wrapper = document.querySelector('.wrapper');
+    const confetti_class = document.querySelector('.confetti');
+    const audio = document.querySelector('audio');
 
     const noBtnActions = [
         {
-            gif: "{% static 'css/amira/imgs/sad1.gif' %}",
+            gif: sad1GifUrl,
             text: "why not? :("
         },
         {
-            gif: "{% static 'css/amira/imgs/sad2.gif' %}",
+            gif: sad2GifUrl,
             text: "but... i really want to :("
         },
         {
-            gif: "{% static 'css/amira/imgs/sad3.gif' %}",
+            gif: sad3GifUrl,
             text: "don't make me cry :("
         },
         {
-            gif: "{% static 'css/amira/imgs/no-choice.gif' %}",
+            gif: noChoiceGifUrl,
             text: "you are not allowed to say no to me ☺️",
             hideNoBtn: true
         }
@@ -55,10 +57,12 @@ window.onload = function() {
     });
 
     yesBtn.addEventListener('click', function () {
-        valentineGif.src = "{% static 'css/amira/imgs/yes.gif' %}";
+        valentineGif.src = yesGifUrl;
         valentinesText.innerText = "😁😁😁😁 te amo!! 😁😁😁😁";
         yesBtn.style.display = 'none';
         noBtn.style.display = 'none';
+        confetti_class.style.display = 'flex';
+        audio.play();
     });
 
     // Set the initial left and top of no-btn to be next to yes-btn

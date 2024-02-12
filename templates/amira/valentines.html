@@ -28,6 +28,24 @@
         <div class="altheart x6"></div>
         <!-- FALLING HEART ANIMATION END -->
 
+        <!-- CONFETTI ANIMATION -->
+        <div class="confetti" style="display: none;">
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
+        </div>
+        <!-- CONFETTI ANIMATION END -->
+
         <h1 class="title-text" style="color: red;"><strong>mi amor hermoso...</strong></h1>
         <img id="valentine-gif" src="{% static 'css/amira/imgs/bear_rose.gif' %}" style="filter: blur(0.7px); width: 456px; height: 498px"
              alt="bear with rose">
@@ -42,6 +60,9 @@
         </div>
     </div>
 </section>
+<audio controls autoplay style="display: none">
+    <source src="{% static 'css/amira/imgs/happy_sound.mp3' %}" type="audio/mp3">
+</audio>
 </body>
 </html>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -53,4 +74,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+<script type="text/javascript">
+    var yesGifUrl = "{% static 'css/amira/imgs/yes.gif' %}";
+    var sad1GifUrl = "{% static 'css/amira/imgs/sad1.gif' %}";
+    var sad2GifUrl = "{% static 'css/amira/imgs/sad2.gif' %}";
+    var sad3GifUrl = "{% static 'css/amira/imgs/sad3.gif' %}";
+    var noChoiceGifUrl = "{% static 'css/amira/imgs/no-choice.gif' %}";
+</script>
 <script src="{% static 'js/amira/valentines.js' %}"></script>
