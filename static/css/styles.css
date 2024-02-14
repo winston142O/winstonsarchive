@@ -1,5 +1,10 @@
 body {
-    background-color: #CEE0FF; /* Page bg */
+    background-color: #2C4251;
+    color: #ffffff;
+}
+
+.card {
+    color: black
 }
 
 #site-footer {
@@ -19,9 +24,8 @@ body {
     margin-top: 20px;
 }
 
-/* Remove underlines from anchortags */
 a {
-    text-decoration: none;
+    text-decoration: none; /* Remove underlines from anchortags */
 }
 
 .asteriskField {
@@ -194,7 +198,7 @@ a {
 
 .btn-tag.selected-tag {
     background-color: gray;
-    color: white; /* Adjust text color if needed */
+    color: white;
 }
 
 .comment-btn {
