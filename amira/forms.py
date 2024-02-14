@@ -11,6 +11,8 @@ class SentenceForm(forms.Form):
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
     date_added = forms.DateTimeField(widget=forms.HiddenInput(), initial=timezone.now)
+    
+    date=None
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
