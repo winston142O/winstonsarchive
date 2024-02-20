@@ -3,10 +3,14 @@ from django.views.generic import ListView
 from .models import Post, Comment, Tag
 from django.db.models import Q
 from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.shortcuts import get_object_or_404, redirect
+from users.utils import user_is_staff
+from django.views.generic.edit import CreateView, DeleteView
 from django.http import JsonResponse, Http404
 from django.views import View
 from django.contrib import messages
+from .forms import PostForm
 
 class PostListView(ListView):
     model = Post
@@ -17,7 +21,6 @@ class PostListView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Add additional context data
         context['all_tags'] = Tag.objects.all()
         return context
 
@@ -25,17 +28,16 @@ def search_posts(request):
     query = request.GET.get('q')
     tags = request.GET.get('tags', '').split()
 
-    if query or tags:
-        if query=='':
-            results = Post.objects.filter(tags__name__in=tags).distinct()
-            
-        elif tags == []:
-            results = Post.objects.filter(title__icontains=query)
-            
-        else:
-            results = Post.objects.filter(Q(title__icontains=query) & Q(tags__name__in=tags)).distinct().order_by('-date_posted')
-        context = {'results': results, 'query': query, 'selected_tags':tags, 'all_tags': Tag.objects.all()}
+    results = Post.objects.all().order_by('-date_posted')
+
+    if tags:
+        results = results.filter(tags__name__in=tags)
+
+    if query:
+        results = results.filter(title__icontains=query)    
         
+    if query or tags:
+        context = {'results': results, 'query': query, 'selected_tags':tags, 'all_tags': Tag.objects.all()}
     else:
         context = {'all_tags': Tag.objects.all()}
     
@@ -50,11 +52,38 @@ class PostDetail(ListView):
         return Comment.objects.filter(post=self.kwargs['pk']).order_by('-date_added')
     
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)     
         context['post'] = Post.objects.get(pk=self.kwargs['pk'])
         context['tags'] = context['post'].tags.all()  
         context['logged_user'] = self.request.user    
         return context
+    
+@method_decorator(user_passes_test(user_is_staff, login_url='login'), name='dispatch') 
+class PostCreateView(CreateView):
+    model = Post
+    form_class = PostForm
+    template_name = "blog/post_form.html"
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+@login_required
+def post_like(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.user in post.likes.all():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+    return redirect('post-detail', pk=post.pk)
+
+@method_decorator(user_passes_test(user_is_staff, login_url='login'), name='dispatch')
+class DeletePostView(DeleteView):
+    model = Post
+    success_url = '/'
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
 
 @method_decorator(login_required, name='dispatch')
 class CommentView(View):

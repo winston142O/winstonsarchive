@@ -80,5 +80,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
+        else {
+            alert('Please enter a comment before submitting.');
+        }
     });
 });

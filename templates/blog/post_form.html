@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/tags.css' %}">
+    <link rel="stylesheet" href="{% static 'css/post-detail.css' %}">  
+    <div class="post-container" style="margin-top: 0px">
+        <div class="messages-container">
+            {% if messages %}
+                {% for message in messages %}
+                    {% if 'success' in message.tags %}
+                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div> 
+                    {% elif 'info' in message.tags %}
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div> 
+                    {% elif 'danger' in message.tags %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div> 
+                    {% else %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div> 
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>          
+        <div class="card shadow post-card" style="border-radius: 10px;">
+            <div class="card-body" style="width: 100%">                
+                <form method="POST" stlye="width: 100%">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {{ form.media }}
+                    <button class="btn btn-primary" style="width: 100%" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>                       
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{% static 'js/search_posts.js' %}"></script>
+    <script src="{% static 'js/auto_adjust_margin.js' %}"></script>
+{% endblock %}

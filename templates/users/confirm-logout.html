@@ -16,14 +16,20 @@
             <div class="card-body">
                 <div class="content-of-card">
                     <center><img src="{% static 'css/imgs/Sad_Cartoon.png' %}" style="width: 150px; height: 250px; filter: blur(0.1px);" alt="Sad :("/></center>
-                    <h3 class="card-title mb-4" style="margin-bottom: 0px !important;">We will miss you!</h3>
-                    <small class="text-muted ml-2">                        
-                        Wanna come back? <a href="{% url 'login' %}">Log back in</a>        
-                    </small>
+                    <h3 class="card-title mb-4" style="margin-bottom: 0px !important;">Do you actually want to log out?</h3>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <center>
+                                <button type="submit" class="btn btn-danger" >Yes, I want to log out</button>
+                                <a href="{% url 'blog-posts' %}" class="btn btn-primary" >No, I want to stay</a>
+                            </center>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>            
-    </div>    
+    </div>        
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{% static 'js/auto_adjust_margin.js' %}"></script>
 {% endblock %}

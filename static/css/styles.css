@@ -208,3 +208,13 @@ a {
 .comment-column {
     width: 100%;
 }
+
+.btn-info {
+    color: #e9ecef;
+    background-color: #0dcaf0;
+    border-color: #0dcaf0;
+}
+
+.django-ckeditor-widget {
+    width: 100%;
+}
