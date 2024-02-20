@@ -6,11 +6,12 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import get_object_or_404, redirect
 from users.utils import user_is_staff
-from django.views.generic.edit import CreateView, DeleteView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.http import JsonResponse, Http404
 from django.views import View
 from django.contrib import messages
 from .forms import PostForm
+from django.urls import reverse_lazy
 
 class PostListView(ListView):
     model = Post
@@ -80,10 +81,20 @@ def post_like(request, pk):
 @method_decorator(user_passes_test(user_is_staff, login_url='login'), name='dispatch')
 class DeletePostView(DeleteView):
     model = Post
-    success_url = '/'
+    success_url = reverse_lazy('blog-posts')
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+
+@method_decorator(user_passes_test(user_is_staff, login_url='login'), name='dispatch') 
+class UpdatePostView(UpdateView):
+    model = Post
+    form_class = PostForm
+    template_name = "blog/post_form.html"
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 @method_decorator(login_required, name='dispatch')
 class CommentView(View):

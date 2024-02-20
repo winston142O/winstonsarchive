@@ -14,6 +14,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("amira/", include("amira.urls")),
     path("blog/", include("blog.urls")),
+    path("portfolio/", include("portfolio.urls")),
     path("about-Winston/", about_me, name="about-Winston"),
     path("auth/", include("users.urls")),
     path("ckeditor/", include("ckeditor_uploader.urls")),

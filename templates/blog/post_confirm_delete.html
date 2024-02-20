@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section" style="width: auto;">
+        <div class="messages-container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="card shadow" style="border-radius: 20px">
+            <div class="card-body">
+                <div class="content-of-card">
+                    <h3 class="card-title mb-4" style="margin-bottom: 0px !important;">Do you really want to delete this post?</h3>
+                    <p class="text-muted">This action cannot be undone.</p>
+                    <center><h4>"{{ object.title }}"</h4></center>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <center>
+                                <input type="submit" value="Yes" class="btn btn-danger">
+                                <a href="{% url 'post-detail' object.pk %}" class="btn btn-primary">No</a>                            </center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>            
+    </div>        
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{% static 'js/auto_adjust_margin.js' %}"></script>
+{% endblock %}

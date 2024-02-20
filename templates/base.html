@@ -23,7 +23,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">                        
                         <li class="nav-item">
-                            <a class="nav-link {% if request.resolver_match.url_name == 'about-Winston' %}active{% endif %}" href="{% url 'about-Winston' %}">About me</a> <!--TODO: Update href -->
+                            <a class="nav-link {% if request.resolver_match.url_name == 'about-Winston' %}active{% endif %}" href="{% url 'about-Winston' %}">About me</a> 
                         </li>  
                         <li class="nav-item">
                             <a class="nav-link {% if request.resolver_match.url_name == 'blog-posts' %}active{% endif %}" href="{% url 'blog-posts' %}">Posts</a>
@@ -34,7 +34,7 @@
                             </li>
                         {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link {% if request.resolver_match.url_name == 'portfolio' %}active{% endif %}" href="{% url 'about-Winston' %}">Portfolio</a> <!--TODO: Update href -->
+                            <a class="nav-link {% if request.resolver_match.url_name == 'portfolio' %}active{% endif %}" href="{% url 'portfolio' %}">Portfolio</a> 
                         </li>                          
                     </ul>
                     <ul class="navbar-nav mb-2 mb-lg-0 d-flex" style="column-gap: 10px">

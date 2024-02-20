@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth.models import User
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from django.shortcuts import render, get_object_or_404
 
 def register(request):
     """ The view responsible for user registration. """
@@ -19,6 +20,12 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
+
+def user_profile(request, id):
+    """ The view responsible for viewing another user's profile. """
+    
+    user = get_object_or_404(User, id=id)
+    return render(request, 'users/user_profile.html', {'profile_user': user, 'logged_user': request.user})
 
 @login_required
 def profile(request):
@@ -51,7 +58,7 @@ def profile(request):
 def about_me(request):
     """ Winston's about me page. """
     
-    return render(request, 'about_me.html')
+    return render(request, 'about_me.html', {'winston_user': User.objects.get(username='winston1420')})
 
 @login_required
 def confirmLogout(request):
