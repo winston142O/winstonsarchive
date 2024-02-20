@@ -172,3 +172,6 @@ REST_FRAMEWORK = {
 
 SESSION_COOKIE_AGE = 3600 # 1 hour
 SESSION_SAVE_EVERY_REQUEST = True # logout only if inactive
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'

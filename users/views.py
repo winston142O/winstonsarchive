@@ -53,4 +53,9 @@ def about_me(request):
     
     return render(request, 'about_me.html')
 
+@login_required
+def confirmLogout(request):
+    
+    return render(request, 'users/confirm-logout.html')
+
 #TODO: PASSOWRD RESET VIEWS
