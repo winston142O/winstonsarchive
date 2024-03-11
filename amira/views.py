@@ -50,7 +50,7 @@ class SentenceListView(UserPassesTestMixin, ListView):
             'oct_2023',
             'nov_2023',
             'dec_2023'
-        ]
+        ] # TODO: Update pictures
 
         images_by_month = {}
         base_folder = 'static/css/amira/imgs/us/'
@@ -80,7 +80,7 @@ class SentenceCreateView(UserPassesTestMixin, CreateView):
         allowed_users = config('ALLOWED_USERS').split(',')
         return self.request.user.username in allowed_users
 
-    # Redirect is user is not allowed
+    # Redirect if user is not allowed
     def handle_no_permission(self):
         messages.error(self.request, 'You do not have access to this part of the site...')
         return redirect('login')
