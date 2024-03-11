@@ -6,6 +6,7 @@ from django.views.generic import (
     CreateView,
 )
 import os
+from decouple import config
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib import messages
 from django.shortcuts import redirect
@@ -13,21 +14,22 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import AllowAny
+from django.contrib.auth.mixins import UserPassesTestMixin
 
-class SentenceListView(ListView):
+class SentenceListView(UserPassesTestMixin, ListView):
     model = Sentence
     template_name = 'amira/amira_home.html' 
     context_object_name = 'sentences'
     
-    # # Only allow certain users
-    # def test_func(self):
-    #     allowed_users = os.getenv('ALLOWED_USERS').split(',')
-    #     return self.request.username in allowed_users
+    # Only allow certain users
+    def test_func(self):
+        allowed_users = config('ALLOWED_USERS').split(',')
+        return self.request.user.username in allowed_users
 
-    # # Redirect is user is not allowed
-    # def handle_no_permission(self):
-    #     messages.error(self.request, 'You do not have access to this part of the site...')
-    #     return redirect('login')
+    # Redirect is user is not allowed
+    def handle_no_permission(self):        
+        messages.warning(self.request, 'You do not have access to this part of the site...')
+        return redirect('profile')
     
     # Get images from static folder
     def get_context_data(self, **kwargs):
@@ -75,8 +77,8 @@ class SentenceCreateView(UserPassesTestMixin, CreateView):
     
     # Only allow certain users
     def test_func(self):
-        allowed_users = os.getenv('ALLOWED_USERS').split(',')
-        return self.request.username in allowed_users
+        allowed_users = config('ALLOWED_USERS').split(',')
+        return self.request.user.username in allowed_users
 
     # Redirect is user is not allowed
     def handle_no_permission(self):

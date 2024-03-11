@@ -21,7 +21,18 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">                        
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">  
+                        {% if user.is_superuser %}
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    For Amira
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="{% url 'ily_amira' %}">You and I</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'valentine_amira' %}">Valentines</a></li>
+                                </ul>
+                            </div>
+                        {% endif %}                      
                         <li class="nav-item">
                             <a class="nav-link {% if request.resolver_match.url_name == 'about-Winston' %}active{% endif %}" href="{% url 'about-Winston' %}">About me</a> 
                         </li>  
@@ -35,7 +46,7 @@
                         {% endif %}
                         <li class="nav-item">
                             <a class="nav-link {% if request.resolver_match.url_name == 'portfolio' %}active{% endif %}" href="{% url 'portfolio' %}">Portfolio</a> 
-                        </li>                          
+                        </li>                                                  
                     </ul>
                     <ul class="navbar-nav mb-2 mb-lg-0 d-flex" style="column-gap: 10px">
                         {% if user.is_authenticated %}                
@@ -103,6 +114,7 @@
             </div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.js"></script>
         <!-- Core theme JS-->
     </body>
 </html>
