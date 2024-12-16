@@ -6,7 +6,8 @@ from django.views.generic import (
     CreateView,
 )
 import os
-from decouple import config
+from dotenv import load_dotenv
+from datetime import timedelta
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib import messages
 from django.shortcuts import redirect
@@ -16,6 +17,10 @@ from rest_framework.decorators import permission_classes
 from rest_framework.permissions import AllowAny
 from django.contrib.auth.mixins import UserPassesTestMixin
 
+
+# Load environment variables from .env file
+load_dotenv()
+
 class SentenceListView(UserPassesTestMixin, ListView):
     model = Sentence
     template_name = 'amira/amira_home.html' 
@@ -23,7 +28,7 @@ class SentenceListView(UserPassesTestMixin, ListView):
     
     # Only allow certain users
     def test_func(self):
-        allowed_users = config('ALLOWED_USERS').split(',')
+        allowed_users = os.getenv('ALLOWED_USERS', '').split(',')
         return self.request.user.username in allowed_users
 
     # Redirect is user is not allowed
