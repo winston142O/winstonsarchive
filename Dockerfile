@@ -29,4 +29,5 @@ RUN python manage.py collectstatic
 EXPOSE 8000
 
 # Start server using gunicorn
-CMD ["gunicorn", "--bind", ":8000", "winstonsarchive_rev.wsgi:application"]
+# CMD ["gunicorn", "--bind", ":8000", "winstonsarchive_rev.wsgi:application"]
+CMD ["python", "manage.py", "runserver"]
