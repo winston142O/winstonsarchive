@@ -12,6 +12,7 @@ WORKDIR /code
 # Install system dependencies
 RUN apt-get update -y && apt-get install -y \
     libpq-dev \
+    python3-distutils \
     && apt-get clean
 
 # Install Python dependencies
