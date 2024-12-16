@@ -40,6 +40,10 @@ CORS_ALLOWED_ORIGINS = [
     "https://winstonsarchive-production.up.railway.app",
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://winstonsarchive-production.up.railway.app",
+]
+
 # Application definition
 
 INSTALLED_APPS = [
