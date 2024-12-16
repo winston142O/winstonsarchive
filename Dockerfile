@@ -28,4 +28,4 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 8000
 
 # Start server using gunicorn
-CMD ["gunicorn", "--bind", ":8000", "your_project_name.wsgi:application"]
+CMD ["gunicorn", "--bind", ":8000", "winstonsarchive.wsgi:application"]
