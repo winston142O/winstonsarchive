@@ -2,7 +2,7 @@ function getRandomSentence() {
     const sentencePlaceholder = document.getElementById('sentence-placeholder');
     sentencePlaceholder.style.opacity = 0;
 
-    fetch('http://localhost:8000/amira/api/sentences')
+    fetch('https://winstonsarchive-production.up.railway.app/amira/api/sentences')
         .then(response => response.json())
         .then(data => {
             const randomIndex = Math.floor(Math.random() * data.length);
@@ -16,7 +16,7 @@ function getRandomSentence() {
 
 function calculateTimeDifference() {
     const startDate = new Date('December 19, 2022 00:00:00 GMT');
-    const currentDate = new Date();
+    const currentDate = new Date('July 13, 2024 13:31:00 GMT');
     const timeDifference = currentDate - startDate;
 
     const seconds = Math.floor(timeDifference / 1000);
