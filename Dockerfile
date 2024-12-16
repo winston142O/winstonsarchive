@@ -23,7 +23,7 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY . /code/
 
 # Collect static files
-RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic
 
 # Expose port
 EXPOSE 8000
