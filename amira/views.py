@@ -16,7 +16,7 @@ from rest_framework import generics
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import AllowAny
 from django.contrib.auth.mixins import UserPassesTestMixin
-
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Load environment variables from .env file
 load_dotenv()
@@ -96,7 +96,13 @@ class SentenceCreateView(UserPassesTestMixin, CreateView):
     
     def get_success_url(self):
         return reverse('create_sentence')
-    
+
+def is_allowed_user(user):
+    allowed_users = os.getenv('ALLOWED_USERS', '').split(',')
+    return user.username in allowed_users
+
+@login_required
+@user_passes_test(is_allowed_user)
 def ValentinesView(request):
     return render(request, 'amira/valentines.html')
 
